@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.example.euweather.model.ManyCitiesResponse;
 import com.example.euweather.model.WeatherInfo;
 
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, CODE);
             }
         });
-
 
         MyApplication myApplication = MyApplication.getMyApplicationInstance();
         myApi = myApplication.getMyApi();

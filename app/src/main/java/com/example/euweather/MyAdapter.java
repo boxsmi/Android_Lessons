@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.euweather.model.WeatherInfo;
 
 import java.util.ArrayList;
@@ -41,22 +42,33 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         switch (values.get(i).getWeather().get(0).getId() / 100) {
             case 2:
                 myViewHolder.ico.setImageResource(R.drawable.thunder);
+                Glide.with(MyApplication.getMyApplicationInstance()).load("https://www.iconsdb.com/icons/download/soylent-red/chance-of-storm-128.png").into(myViewHolder.ico);
                 break;
             case 3:
             case 5:
                 myViewHolder.ico.setImageResource(R.drawable.rain);
+                Glide.with(MyApplication.getMyApplicationInstance()).load("https://www.iconsdb.com/icons/download/soylent-red/rain-128.png").into(myViewHolder.ico);
+
                 break;
             case 6:
                 myViewHolder.ico.setImageResource(R.drawable.snow);
+                Glide.with(MyApplication.getMyApplicationInstance()).load("https://www.iconsdb.com/icons/download/soylent-red/snow-storm-128.png").into(myViewHolder.ico);
+
                 break;
             case 7:
                 myViewHolder.ico.setImageResource(R.drawable.sun);
+                Glide.with(MyApplication.getMyApplicationInstance()).load("https://www.iconsdb.com/icons/download/icon-sets/web-2-deep-pink/sun-5-64.png").into(myViewHolder.ico);
+
                 break;
             case 8:
-                if (values.get(i).getWeather().get(0).getId() > 800)
+                if (values.get(i).getWeather().get(0).getId() > 800){
                     myViewHolder.ico.setImageResource(R.drawable.cloudandsun);
+                Glide.with(MyApplication.getMyApplicationInstance()).load("https://www.iconsdb.com/icons/download/soylent-red/cloudy-128.png").into(myViewHolder.ico);}
+
                 else
                     myViewHolder.ico.setImageResource(R.drawable.sun);
+                Glide.with(MyApplication.getMyApplicationInstance()).load("https://www.iconsdb.com/icons/download/soylent-red/sun-5-128.png").into(myViewHolder.ico);
+
                 break;
             default:
                 myViewHolder.ico.setImageResource(R.drawable.nature);
