@@ -33,7 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         myViewHolder.cityName.setText("City: " + values.get(i).getName());
         myViewHolder.main.setText("State: " + values.get(i).getWeather().get(0).getMain());
         myViewHolder.description.setText("Description: " + values.get(i).getWeather().get(0).getDescription());
-        myViewHolder.temp.setText("Temperature: " + (Float.valueOf(values.get(i).getMain().getTemp()).intValue() - 273) + " 'C");
+        myViewHolder.temp.setText("Temperature: " + (values.get(i).getMain().getTemp()).intValue() + " 'C");
         myViewHolder.pressure.setText("Pressure: " + values.get(i).getMain().getPressure() + " hpa");
         myViewHolder.humidity.setText("Humidity: " + values.get(i).getMain().getHumidity() + " %");
         myViewHolder.wind.setText("Wind speed: " + values.get(i).getWind().getSpeed() + " m/s");

@@ -10,7 +10,8 @@
         android:id="@+id/myRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/EditButton"

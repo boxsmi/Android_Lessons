@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.example.euweather.model.ManyCitiesResponse;
 import com.example.euweather.model.WeatherInfo;
 
 import java.util.ArrayList;
@@ -69,25 +70,44 @@ public class MainActivity extends AppCompatActivity {
         getInfoByCities();
 
 
-
-
     }
 
     private void getInfoByCities() {
         adapter.values.clear();
-        for(CityEnum city: cities){
-            myApi.getWeather(city.getId(), MyApplication.APP_ID).enqueue(new Callback<WeatherInfo>() {
-                @Override
-                public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
-                    adapter.addValue(response.body());
-                }
 
-                @Override
-                public void onFailure(Call<WeatherInfo> call, Throwable t) {
-                    System.out.println("EXCEPTION: " + t);
-                }
-            });
+        StringBuilder ids = new StringBuilder();
+        for (CityEnum city : cities) {
+            ids.append(city.getId()).append(",");
         }
+        if (ids.length() >= 0)
+            ids.deleteCharAt(ids.length() - 1);
+
+        myApi.getManyWeather(ids.toString(), MyApplication.APP_ID, "metric")
+                .enqueue(new Callback<ManyCitiesResponse>() {
+                    @Override
+                    public void onResponse(Call<ManyCitiesResponse> call, Response<ManyCitiesResponse> response) {
+                        adapter.setValues(response.body().getWeatherInfoList());
+                    }
+
+                    @Override
+                    public void onFailure(Call<ManyCitiesResponse> call, Throwable t) {
+
+                    }
+                });
+
+//        for(CityEnum city: cities){
+//            myApi.getWeather(city.getId(), MyApplication.APP_ID, "metric").enqueue(new Callback<WeatherInfo>() {
+//                @Override
+//                public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
+//                    adapter.addValue(response.body());
+//                }
+//
+//                @Override
+//                public void onFailure(Call<WeatherInfo> call, Throwable t) {
+//                    System.out.println("EXCEPTION: " + t);
+//                }
+//            });
+//        }
 
     }
 
